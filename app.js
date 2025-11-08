@@ -1,15 +1,20 @@
 window.addEventListener("load", () => {
-    const canvas = document.querySelector("canvas");
+    const canvas = document.getElementById("dibujo");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight - 120; // Dejar espacio para los controles
+    // Ajustar tamaño del canvas
+    function ajustarTamaño() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight - 120; // dejar espacio para los controles
+    }
+    ajustarTamaño();
+    window.addEventListener("resize", ajustarTamaño);
 
     let dibujando = false;
     let color = document.getElementById("color").value;
     let grosor = document.getElementById("grosor").value;
 
-    // Eventos de controles
+    // Actualizar color y grosor
     document.getElementById("color").addEventListener("change", e => {
         color = e.target.value;
     });
@@ -18,24 +23,24 @@ window.addEventListener("load", () => {
         grosor = e.target.value;
     });
 
+    // Limpiar canvas
     document.getElementById("limpiar").addEventListener("click", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    // Evento touchstart
-    canvas.addEventListener("touchstart", (e) => {
-        e.preventDefault(); // Evita scroll o zoom
-        let toque = e.touches[0];
+    // Dibujar al tocar
+    canvas.addEventListener("touchstart", e => {
+        e.preventDefault();
+        const toque = e.touches[0];
         ctx.beginPath();
-        ctx.moveTo(toque.clientX, toque.clientY - 120); // Ajuste por el espacio superior
+        ctx.moveTo(toque.clientX, toque.clientY - 120);
         dibujando = true;
     });
 
-    // Evento touchmove
-    canvas.addEventListener("touchmove", (e) => {
+    canvas.addEventListener("touchmove", e => {
         if (!dibujando) return;
         e.preventDefault();
-        let toque = e.touches[0];
+        const toque = e.touches[0];
         ctx.lineTo(toque.clientX, toque.clientY - 120);
         ctx.strokeStyle = color;
         ctx.lineWidth = grosor;
@@ -43,8 +48,9 @@ window.addEventListener("load", () => {
         ctx.stroke();
     });
 
-    // Evento touchend
     canvas.addEventListener("touchend", () => {
         dibujando = false;
+        ctx.closePath();
     });
 });
+
