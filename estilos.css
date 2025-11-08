@@ -1,33 +1,35 @@
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #fff;
-    text-align: center;
-    font-family: Arial, sans-serif;
+* { box-sizing: border-box; }
+html,body { height: 100%; margin: 0; padding: 0; background: #fff; font-family: Arial, sans-serif; }
+
+#ui {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(255,255,255,0.95);
+  padding: 6px 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
-h2 {
-    margin: 10px;
-    font-size: 18px;
-    color: #333;
+#coords {
+  font-size: 12px;
+  color: #333;
+  padding-left: 6px;
 }
 
-#controles {
-    margin: 10px;
-}
-
-label, input, button {
-    font-size: 16px;
-    margin: 5px;
-}
-
+/* canvas ocupa toda la pantalla detrás del panel */
 canvas {
-    position: absolute;
-    top: 120px;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 120px);
-    background-color: #fff;
-    touch-action: none; /* Muy importante: permite capturar los toques */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;      /* CSS tamaño */
+  height: 100vh;     /* CSS tamaño */
+  touch-action: none; /* muy importante */
+  background: #ffffff;
 }
+
