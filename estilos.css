@@ -2,32 +2,32 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #ffffff;
-    touch-action: none;
-    font-family: Arial, sans-serif;
+    background-color: #fff;
     text-align: center;
+    font-family: Arial, sans-serif;
 }
 
 h2 {
-    font-size: 20px;
+    margin: 10px;
+    font-size: 18px;
     color: #333;
-    margin-top: 10px;
 }
 
 #controles {
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 label, input, button {
-    margin: 5px;
     font-size: 16px;
+    margin: 5px;
 }
 
 canvas {
     position: absolute;
-    top: 120px; /* Para que el canvas empiece debajo de los botones */
+    top: 120px;
     left: 0;
     width: 100%;
     height: calc(100% - 120px);
-    background: #fff;
+    background-color: #fff;
+    touch-action: none; /* Muy importante: permite capturar los toques */
 }
